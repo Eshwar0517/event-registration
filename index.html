@@ -1,40 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head><title>Event Registration</title></head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+</head>
 <body>
-<form id="registrationForm" onsubmit="return validateForm()">
-<label for="name">Full Name</label>
-<input type="text" id="name" required>
-<br>
-<br>
-<label for="email">Email</label>
-<input type="email" id="email" required>
-<br>
-<br>
-<label for="phone">Phone Number</label>
-<input type="tel" id="phone" required pattern="[0-9]{10}">
-<br><br>
-<label for="event">Select Event</label>
-<select id="event" required>
-<option value="">--Select--</option>
-<option value="workshop">Workshop</option>
-<option value="seminar">Seminar</option>
-<option value="conference">Conference</option>
-</select>
-<br><br>
+  <h2>Participant Registration</h2>
+  <form onsubmit="return validateForm()">
+    <input type="text" id="name" placeholder="Enter Name"><br><br>
+    <input type="email" id="email" placeholder="Enter Email"><br><br>
+    <input type="password" id="password" placeholder="Enter Password"><br><br>
+    <button type="submit">Register</button>
+  </form>
+  <p id="msg"></p>
 
-<button type="submit">Register</button>
-</form>
-<script>
-function validateForm() {
- const phone = document.getElementById('phone').value;
- if (!/^\d{10}$/.test(phone)) {
- alert('Invalid phone number');
- return false;
- }
- alert('Registration Successful!');
-return true;
-}
-</script>
+  <script>
+    function validateForm() {
+      let name = document.getElementById("name").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value.trim();
+
+      if (!name || !email || !password) {
+        alert("Please fill all fields!");
+        return false;
+      }
+
+      document.getElementById("msg").innerText = "✅ Registration Successful!";
+      return false; // prevent page refresh (for demo)
+    }
+  </script>
 </body>
 </html>
